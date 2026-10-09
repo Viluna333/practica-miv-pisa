@@ -263,7 +263,13 @@ m1.metric(f"España · {ano_sel}", f"{int(fila['Espana'])} pts",
           delta=None if prev is None else f"{int(fila['Espana'] - prev['Espana']):+d} vs {int(prev['Ano'])}")
 m2.metric(f"OCDE · {ano_sel}", f"{int(fila['OCDE'])} pts",
           delta=None if prev is None else f"{int(fila['OCDE'] - prev['OCDE']):+d} vs {int(prev['Ano'])}")
-m3.metric("Brecha España − OCDE", f"{fmt(fila['Brecha'])} pts", delta=fila["Situacion"], delta_color="off")
+flecha = "up" if fila["Brecha"] > 0 else "down" if fila["Brecha"] < 0 else "off"
+try:
+    m3.metric("Brecha España − OCDE", f"{fmt(fila['Brecha'])} pts",
+              delta=fila["Situacion"], delta_color="off", delta_arrow=flecha)
+except TypeError:  # Streamlit antiguo sin delta_arrow
+    m3.metric("Brecha España − OCDE", f"{fmt(fila['Brecha'])} pts")
+    m3.caption(fila["Situacion"])
 
 # [Connectar] las dos figuras comparten asignatura y edición destacada
 g1, g2 = st.columns([3, 2])
