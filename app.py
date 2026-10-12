@@ -1,8 +1,6 @@
 """
 PRÁCTICA 1 — Desmuntant la mentida visual
 Rediseño interactivo del informe PISA (España vs OCDE)
-
-Mapa del código respecto al enunciado
 -------------------------------------
 Fase 2 · Preprocesamiento  -> función `cargar_y_preprocesar` (4 operaciones justificadas)
 Fase 3 · Redisseny gráfico -> `fig_evolucion` y `fig_brecha`
@@ -13,7 +11,7 @@ Fase 3 · Interactividad    -> controles de la cabecera (5 tipologías del curso
     - Abstraer / Elaborar  : tooltips al pasar el ratón + tabla de datos bajo demanda
     - Reconfigurar         : escala del eje Y (ajustada / desde 0)
 
-Ejecutar:  streamlit run app.py   (con pisa_esp_ocde.csv en la misma carpeta)
+Ejecutar:  streamlit run app.py   
 """
 import math
 from pathlib import Path
@@ -22,11 +20,11 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-st.set_page_config(page_title="PISA: España vs OCDE", layout="wide")  # debe ser la 1ª llamada a st
+st.set_page_config(page_title="PISA: España vs OCDE", layout="wide")  # 
 
 CSV_PATH = Path(__file__).parent / "pisa_esp_ocde.csv"
 
-# Paleta pensada para que el protagonista (España) destaque y la referencia (OCDE)
+# Paleta pensada para que España destaque y OCDE
 # quede en segundo plano: principio de similitud/figura-fondo de la Gestalt.
 COLOR_ESP = "#0072B2"   # azul saturado (apto para daltonismo)
 COLOR_OCDE = "#8C8C8C"  # gris neutro
